@@ -6,37 +6,32 @@ public class Assert {
     public Assert() {
     }
 
-    public static void assertEquals (Object expected, Object actual) {
-        if (Objects.isNull(expected) && Objects.isNull(actual)) return;
-        if (!Objects.isNull(expected) && !Objects.isNull(actual) && expected.equals(actual)) return;
-        failed();
+    public static boolean assertEquals (Object expected, Object actual) {
+        if (Objects.isNull(expected) && Objects.isNull(actual)) return true;
+        if (!Objects.isNull(expected) && !Objects.isNull(actual) && expected.equals(actual)) return true;
+        return false;
     }
 
-    public static void assertEquals (long expected, long actual) {
-        if (expected == actual) return;
-        failed();
+    public static boolean assertEquals (long expected, long actual) {
+        if (expected == actual) return true;
+        return false;
     }
 
-    public static void assertEquals (int expected, int actual) {
-        assertEquals(expected, actual);
+    public static boolean assertEquals (int expected, int actual) {
+        return assertEquals((long)expected, (long)actual);
     }
 
-    public static void assertEquals(double expected, double actual, double error) {
-        if (Math.abs(expected - actual) < error) return;
-        failed();
+    public static boolean assertEquals(double expected, double actual, double error) {
+        return assertEquals((float)expected, (float)actual, (float)error);
     }
 
-    public static void assertEquals(float expected, float actual, float error) {
-        assertEquals(expected, actual, error);
+    public static boolean assertEquals(float expected, float actual, float error) {
+        if (Math.abs(expected - actual) < error) return true;
+        return false;
     }
 
-    public static void assertEquals(boolean expected, boolean actual) {
-        if (expected == actual) return;
-        failed();
+    public static boolean assertEquals(boolean expected, boolean actual) {
+        if (expected == actual) return true;
+        return false;
     }
-
-    private static void failed() {
-        throw new AssertionError();
-    }
-
 }

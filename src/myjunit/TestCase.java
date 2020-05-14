@@ -10,13 +10,14 @@ public class TestCase {
         for (Method method : methods) {
             try {
                 if (!method.getName().endsWith("Test")) continue;
+                if (!method.getReturnType().equals(boolean.class)) continue;
                 testResult.run();
-                method.invoke(this);
+                boolean succeed = (boolean)method.invoke(this);
+                if (!succeed) testResult.failed();
             } catch (Exception ex) {
                 testResult.failed();
             }
         }
-
         return testResult;
     }
 }
