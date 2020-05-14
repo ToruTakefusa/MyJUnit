@@ -9,7 +9,7 @@ public class TestCase {
 
         for (Method method : methods) {
             try {
-                if (!method.getName().endsWith("Test")) continue;
+                if (!method.getName().startsWith("test")) continue;
                 if (!method.getReturnType().equals(boolean.class)) continue;
                 testResult.run();
                 boolean succeed = (boolean)method.invoke(this);
