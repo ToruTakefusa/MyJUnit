@@ -1,10 +1,7 @@
 package myjunit;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TestResult {
-    private String name;
+    private final String name;
     private int num;
     private int fail;
 
@@ -23,13 +20,14 @@ public class TestResult {
     }
 
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(this.name);
-        stringBuilder.append(System.lineSeparator());
-        stringBuilder.append("Num of tests : " + this.num);
-        stringBuilder.append(System.lineSeparator());
-        stringBuilder.append("Succeed : " + (this.num - this.fail));
-        stringBuilder.append(System.lineSeparator());
-        stringBuilder.append("Failed : " + this.fail);
-        return stringBuilder.toString();
+        return this.name + System.lineSeparator() +
+                "Num of tests : " +
+                this.num +
+                System.lineSeparator() +
+                "Succeed : " +
+                (this.num - this.fail) +
+                System.lineSeparator() +
+                "Failed : " +
+                this.fail;
     }
 }

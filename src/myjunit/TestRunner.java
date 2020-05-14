@@ -3,7 +3,7 @@ package myjunit;
 import java.lang.reflect.InvocationTargetException;
 
 public class TestRunner {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
             Class<?> clazz = Class.forName(args[0]);
             TestCase testCase = (TestCase)clazz.getConstructor().newInstance();
@@ -15,11 +15,7 @@ public class TestRunner {
         } catch (NoSuchMethodException ex) {
             System.out.println("Can not find test method.");
             ex.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
