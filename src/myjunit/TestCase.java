@@ -9,7 +9,7 @@ public class TestCase {
 
         for (Method method : methods) {
             if (!method.getName().startsWith("test")) continue;
-            if (!method.getReturnType().equals(boolean.class)) continue;
+            if (!method.getReturnType().equals(void.class)) continue;
             Test test = new Test(method);
             test.run(this);
             testResult.addResult(test);
