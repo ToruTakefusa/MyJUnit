@@ -8,15 +8,11 @@ public class TestCase {
         Method[] methods = this.getClass().getMethods();
 
         for (Method method : methods) {
-            try {
-                if (!method.getName().startsWith("test")) continue;
-                if (!method.getReturnType().equals(boolean.class)) continue;
-                testResult.run();
-                boolean succeed = (boolean)method.invoke(this);
-                if (!succeed) testResult.failed();
-            } catch (Exception ex) {
-                testResult.failed();
-            }
+            if (!method.getName().startsWith("test")) continue;
+            if (!method.getReturnType().equals(boolean.class)) continue;
+            Test test = new Test(method);
+            test.run(this);
+            testResult.addResult(test);
         }
         return testResult;
     }

@@ -4,23 +4,27 @@ public class TestResult {
     private final String name;
     private int num;
     private int fail;
+    private StringBuilder failedMessage;
 
     public TestResult(String name) {
         this.name = name;
         this.num = 0;
         this.fail = 0;
+        this.failedMessage = new StringBuilder();
     }
 
-    public void run() {
+    public void addResult(Test test) {
         this.num++;
-    }
-
-    public void failed() {
-        this.fail++;
+        if (test.isFailed()) {
+            this.failedMessage.append(test.getFailedMessage());
+            this.fail++;
+        }
     }
 
     public String toString() {
-        return this.name + System.lineSeparator() +
+        return "Test " +
+                this.name +
+                System.lineSeparator() +
                 "Num of tests : " +
                 this.num +
                 System.lineSeparator() +
@@ -28,6 +32,10 @@ public class TestResult {
                 (this.num - this.fail) +
                 System.lineSeparator() +
                 "Failed : " +
-                this.fail;
+                this.fail +
+                System.lineSeparator() +
+                "Failed details : " +
+                System.lineSeparator() +
+                this.failedMessage;
     }
 }
