@@ -1,11 +1,19 @@
 package myjunit;
 
 public class TestResult {
+    /** The name of tests. */
     private final String name;
+    /** The number of test methods. */
     private int num;
+    /** The number of failed test methods. */
     private int fail;
+    /** The message of failed test methods. */
     private StringBuilder failedMessage;
 
+    /**
+     * Constructor.
+     * @param name The name of tests.
+     */
     public TestResult(String name) {
         this.name = name;
         this.num = 0;
@@ -13,6 +21,10 @@ public class TestResult {
         this.failedMessage = new StringBuilder();
     }
 
+    /**
+     * Add result of test.
+     * @param test The test which will be added.
+     */
     public void addResult(Test test) {
         this.num++;
         if (test.isFailed()) {
@@ -21,6 +33,10 @@ public class TestResult {
         }
     }
 
+    /**
+     * Show summary of tests.
+     * @return return summary of tests.
+     */
     public String toString() {
         return "Test " +
                 this.name +

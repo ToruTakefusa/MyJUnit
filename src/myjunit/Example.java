@@ -1,6 +1,10 @@
 package myjunit;
 
+/**
+ * This is the sample class.
+ */
 public class Example extends  TestCase{
+
     public void testSample() {
         Assert.assertEquals(true, true);
     }

@@ -2,7 +2,14 @@ package myjunit;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * Runs test class.
+ */
 public class TestRunner {
+    /**
+     * Runs the test class
+     * @param args The test class which you want to run.
+     */
     public static void main(String[] args) {
         try {
             Class<?> clazz = Class.forName(args[0]);
